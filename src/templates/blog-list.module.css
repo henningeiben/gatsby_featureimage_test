@@ -1,0 +1,25 @@
+.page-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+
+.page-link-item {
+  margin: 0;
+}
+
+.page-link-item-link {
+  padding: calc(var(--spacing-8) / 2);
+}
+
+.active-page-link-item {
+  color: #fff;
+  background-color: #007acc;
+}
+
+.post-list-item-header {
+  flex-grow: 1;
+}
