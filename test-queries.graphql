@@ -1,0 +1,66 @@
+query BlogPostBySlugDev($id: String!) {
+  markdownRemark(id: { eq: $id }) {
+    id
+    frontmatter {
+      title
+      date(formatString: "D. MMMM YYYY", locale: "de-DE")
+      dateIso: date(formatString: "YYYY-MM-DD", locale: "en-US")
+      description
+      tags
+      featuredImage {
+        childImageSharp {
+          gatsbyImageData(width: 400)
+        }
+      }
+    }
+  }
+}
+
+query blogListQuery($skip: Int!, $limit: Int!) {
+  site {
+    siteMetadata {
+      title
+    }
+  }
+  allMarkdownRemark(
+    sort: { fields: [frontmatter___date], order: DESC }
+    limit: $limit
+    skip: $skip
+  ) {
+    edges {
+      node {
+        id
+        excerpt
+        fields {
+          slug
+        }
+        frontmatter {
+          date(formatString: "D. MMMM YYYY", locale: "de-DE")
+          dateIso: date(formatString: "YYYY-MM-DD", locale: "en-US")
+          title
+          description
+          tags
+          featuredImage {
+            childImageSharp {
+              gatsbyImageData(
+                height: 100
+                width: 100
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query forallfiles {
+  allFile {
+    nodes {
+      id
+      relativePath
+    }
+  }
+}
